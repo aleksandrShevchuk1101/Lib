@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_EM" Id="{431d95bc-8b1c-4092-b868-ebda5cd037eb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	EM : ARRAY [1..2] OF RTU_EM;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ModbusRealWordUnion" Id="{7a7a168e-e93b-4d27-9786-3333bde5f171}">
+    <Declaration><![CDATA[TYPE ModbusRealWordUnion :
+UNION
+	realValue : REAL;
+	wordValue : ARRAY[1..2] OF WORD;
+END_UNION
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
