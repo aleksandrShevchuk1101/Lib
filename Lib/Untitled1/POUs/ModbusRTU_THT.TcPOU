@@ -60,11 +60,20 @@ CASE MB_CommState OF
 			GVL_THT.THT[MB_UnitID].CommsError:=ModbusTerm.Error;
 			GVL_THT.THT[MB_UnitID].CommsErrorCode:=ModbusTerm.ErrorId;
 			
-		
-		
+			IF NOT ModbusTerm.Error THEN
+				GVL_THT.THT[MB_UnitID].Temp:=MB_ReadData[1].realValue;
+				GVL_THT.THT[MB_UnitID].RH  :=MB_ReadData[2].realValue;
+				
+				GVL_THT.THT[MB_UnitID].Temp_OOR:= (GVL_THT.THT[MB_UnitID].Temp < GVL_THT.Temp_OOR_Min) OR 
+												  (GVL_THT.THT[MB_UnitID].Temp > GVL_THT.Temp_OOR_Max);
+												  
+				GVL_THT.THT[MB_UnitID].RH_OOR:= (GVL_THT.THT[MB_UnitID].RH < GVL_THT.RH_OOR_Min) OR 
+												(GVL_THT.THT[MB_UnitID].RH > GVL_THT.RH_OOR_Max);
+			END_IF
+			
+		MB_UnitID   := MB_UnitID+1;
+		MB_CommState:= TRIGGER;
 		END_IF
-
-
 END_CASE
 	]]></ST>
     </Implementation>
