@@ -64,6 +64,9 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\ModbusRTU_STS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ModbusRTU_THT.TcPOU">
       <SubType>Code</SubType>
     </Compile>

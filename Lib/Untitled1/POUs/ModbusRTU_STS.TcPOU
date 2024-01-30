@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ModbusRTU_STS" Id="{7cafb592-43a6-4a8e-8a90-0b013e56130c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusRTU_STS
+VAR_INPUT
+	MB_FirstUnitID: BYTE;
+	MB_LastUnitID: BYTE;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	ModbusTerm: ModbusRtuMaster_KL6x22B;
+	
+	MB_UnitID: BYTE:=0;
+	MB_Address : WORD := 0;
+	MB_Quantity : WORD := 2;
+	MB_ReadData : ARRAY[1..15] OF WORD;
+	
+	MB_TrigRead : BOOL := FALSE;
+	MB_CommState:(TRiGGER, TRIGGERED, WAIT_RESPONSE, SETUP_NEXT_MESSAGE) := TRIGGER;
+	tmrDelay:TON;
+	Execute: INT;
+END_VAR
+
+VAR	
+	STSNum: INT;
+	MessageNum: INT := 1;
+END_VAR
+
+
+VAR CONSTANT
+	MAX_MESSAGE_NUM: INT:=1;
+	MODBUS_DELAY: TIME:=T#0MS;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (MB_UnitID < MB_FirstUnitID) OR (MB_UnitID>MB_LastUnitID) THEN 
+	MB_UnitID:=MB_FirstUnitID;
+	STSNum:=1;
+	MessageNum:=1;
+	MB_Address:=1;
+	MB_Quantity:=13;
+END_IF
+
+
+ModbusTerm.ReadRegs(
+	UnitID:= MB_UnitID, 
+	Quantity:= MB_Quantity, 
+	MBAddr:= MB_Address-1, 
+	cbLength:= SIZEOF(MB_ReadData), 
+	pMemoryAddr:= ADR(MB_ReadData), 
+	Execute:= MB_TrigRead, 
+	Timeout:= T#100MS, 
+	BUSY=> , 
+	Error=> , 
+	ErrorId=> , 
+	cbRead=> );
+	
+	
+CASE MB_CommState OF 
+	TRiGGER:
+		tmrDelay(IN:=TRUE, PT:=MODBUS_DELAY);
+		IF tmrDelay.Q THEN 
+			MB_TrigRead:=TRUE;
+			MB_CommState:=TRIGGERED;		
+		END_IF
+		
+	TRIGGERED:
+			tmrDelay(IN:=FALSE, PT:=MODBUS_DELAY);
+			MB_TrigRead:=FALSE;
+			MB_CommState:=WAIT_RESPONSE;
+			
+	WAIT_RESPONSE:
+			IF NOT ModbusTerm.BUSY THEN
+				GVL_STS.STS[STSNum].CommsError:= ModbusTerm.Error;
+				GVL_STS.STS[STSNum].CommsErrorCode:= ModbusTerm.ErrorId;
+				
+				IF NOT ModbusTerm.Error THEN 
+					IF MessageNum = 1 THEN // extracts the values in 13 registers #1-13
+						GVL_STS.STS[STSNum].PRI_VA := WORD_TO_REAL(MB_ReadData[1]);
+						GVL_STS.STS[STSNum].PRI_VB := WORD_TO_REAL(MB_ReadData[2]);
+						GVL_STS.STS[STSNum].PRI_VC := WORD_TO_REAL(MB_ReadData[3]);
+						GVL_STS.STS[STSNum].PRI_VA := WORD_TO_REAL(MB_ReadData[4]);
+						GVL_STS.STS[STSNum].OTP_VB := WORD_TO_REAL(MB_ReadData[5]);
+						GVL_STS.STS[STSNum].OTP_VC := WORD_TO_REAL(MB_ReadData[6]);
+						GVL_STS.STS[STSNum].AMPSA  := WORD_TO_REAL(MB_ReadData[7]);
+						GVL_STS.STS[STSNum].AMPSB  := WORD_TO_REAL(MB_ReadData[8]);
+						GVL_STS.STS[STSNum].AMPSC  := WORD_TO_REAL(MB_ReadData[9]);
+						GVL_STS.STS[STSNum].FREQ   := WORD_TO_REAL(MB_ReadData[10]);
+						GVL_STS.STS[STSNum].SEC_VA := WORD_TO_REAL(MB_ReadData[11]);
+						GVL_STS.STS[STSNum].SEC_VB := WORD_TO_REAL(MB_ReadData[12]);
+						GVL_STS.STS[STSNum].SEC_VC := WORD_TO_REAL(MB_ReadData[14]);
+
+					 ELSIF MessageNum = 2 THEN // extracts the values in 3 registers #17-19
+						GVL_STS.STS[STSNum].OTP_LOAD_A:=WORD_TO_REAL(MB_ReadData[1]);
+						GVL_STS.STS[STSNum].OTP_LOAD_B:=WORD_TO_REAL(MB_ReadData[2]);
+						GVL_STS.STS[STSNum].OTP_LOAD_C:=WORD_TO_REAL(MB_ReadData[3]);
+						
+					ELSIF MessageNum = 3 THEN 					
+						// common alarm is bit 15 of register 41
+						GVL_STS.STS[STSNum].COM_ALM :=MB_ReadData[1].15;
+						// other alarms of interest are in register 43 
+						GVL_STS.STS[STSNum].OTP_BKR_OPN    := MB_ReadData[3].0;
+						GVL_STS.STS[STSNum].L1_INP_BKR_OPN := MB_ReadData[3].1;
+						GVL_STS.STS[STSNum].L2_INP_BKR_OPN := MB_ReadData[3].2;
+						GVL_STS.STS[STSNum].L1_BYP_BKR_TRP := MB_ReadData[3].3;
+						GVL_STS.STS[STSNum].L2_BYP_BKR_TRP := MB_ReadData[3].4;
+						GVL_STS.STS[STSNum].OTP_BKR_TRP    := MB_ReadData[3].5;
+						GVL_STS.STS[STSNum].L1_INP_BKR_TRP := MB_ReadData[3].6;
+						GVL_STS.STS[STSNum].L2_INP_BKR_TRP := MB_ReadData[3].7;
+						GVL_STS.STS[STSNum].FANS_FAIL      := MB_ReadData[3].8;	
+					
+					ELSIF MessageNum = 4 THEN 
+						GVL_STS.STS[STSNum].OTP_KW_A  := WORD_TO_REAL(MB_ReadData[1]) / 10.0;
+						GVL_STS.STS[STSNum].OTP_KW_B  := WORD_TO_REAL(MB_ReadData[2]) / 10.0;
+						GVL_STS.STS[STSNum].OTP_KW_C  := WORD_TO_REAL(MB_ReadData[3]) / 10.0;
+						GVL_STS.STS[STSNum].OTP_KVA_A := WORD_TO_REAL(MB_ReadData[4]) / 10.0;
+						GVL_STS.STS[STSNum].OTP_KVA_B := WORD_TO_REAL(MB_ReadData[5]) / 10.0;
+						GVL_STS.STS[STSNum].OTP_KVA_C := WORD_TO_REAL(MB_ReadData[6]) / 10.0;
+					
+					ELSIF MessageNum = 5 THEN 
+						GVL_STS.STS[STSNum].PF_A := WORD_TO_REAL(MB_ReadData[1]) / 100.0;
+						GVL_STS.STS[STSNum].PF_B := WORD_TO_REAL(MB_ReadData[2]) / 100.0;
+						GVL_STS.STS[STSNum].PF_C := WORD_TO_REAL(MB_ReadData[3]) / 100.0;	
+			
+					END_IF
+				END_IF
+				 
+				MB_CommState:=SETUP_NEXT_MESSAGE;
+		  END_IF;	 
+
+	SETUP_NEXT_MESSAGE:
+		MessageNum:=MessageNum+1;
+		
+		IF MessageNum > MAX_MESSAGE_NUM THEN 
+			MessageNum:=1;
+			MB_UnitID:=MB_UnitID+1;
+			STSNum:=STSNum+1;	
+		END_IF
+		
+		IF MessageNum = 1  THEN // extracts the values in 13 registers #1-13
+			MB_Address:=1;
+			MB_Quantity:=13;
+			
+		ELSIF MessageNum = 2 THEN  // extracts the values in 3 registers #17-19
+			MB_Address:=17;
+			MB_Quantity:=3;
+			 
+		ELSIF MessageNum = 3 THEN  // extracts the alarms - 4 registers #41-44
+			MB_Address:=41;
+			MB_Quantity:=4;
+			
+		ELSIF MessageNum = 4 THEN  // extracts the values in 6 registers #56-61
+			MB_Address:=56;
+			MB_Quantity:=6;
+			
+		ELSIF MessageNum = 5 THEN  // extracts the values in 3 registers #69-71
+			MB_Address:=69;
+			MB_Quantity:=3;
+			
+		END_IF 
+		
+		MB_CommState:=TRiGGER;	
+	
+END_CASE
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
