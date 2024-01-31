@@ -176,11 +176,4 @@
 			</TaskPouOids>
 		</Instance>
 	</Project>
-	<Mappings>
-		<OwnerA Name="Untitled1 Instance">
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 2 (EL1004)">
-				<Link VarA="PlcTask Inputs^MAIN.in1" VarB="Channel 1^Input" Size="1"/>
-			</OwnerB>
-		</OwnerA>
-	</Mappings>
 </TcSmItem>
