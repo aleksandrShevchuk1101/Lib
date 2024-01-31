@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	foo:AccumDDHHMM;
+	in1 AT %I* : BOOL;
 	
 	foo1: BOOL;
 	foo2: BOOL;
