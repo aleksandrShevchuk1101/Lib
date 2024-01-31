@@ -49,7 +49,6 @@ ModbusTerm.ReadRegs(
 	ErrorId=> , 
 	cbRead=> );
 	
-	
 CASE MB_CommState OF
 	TRIGGER:
 			tmrDelay(in:=TRUE, PT:=T#1S);

@@ -1,13 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1">
-  <POU Name="MAIN" Id="{01b757f4-05f5-4659-9baf-5a453a283245}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{01b757f4-05f5-4659-9baf-5a453a283245}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	foo:AccumDDHHMM;
+	
+	foo1: BOOL;
+	foo2: BOOL;
+	foo3: BOOL;
+	
+	foo4:STRING;
+	
 END_VAR
-]]>
-    </Declaration>
+]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[foo(State:=foo1 , Retentive:= foo2, Reset:=foo3);
+
+foo4:=foo.DispayTime;
+
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

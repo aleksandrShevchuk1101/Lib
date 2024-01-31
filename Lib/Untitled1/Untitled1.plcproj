@@ -64,6 +64,9 @@
     <Compile Include="POUs\AccumDDHHMM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\AccumTimes.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
