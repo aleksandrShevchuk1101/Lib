@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Modbus_EM" Id="{da7efef0-ccc1-43e9-988b-3faaa67d01e1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Modbus_EM
+VAR_INPUT
+	MB_FirstUnitID: BYTE;
+	MB_LastUnitID: BYTE;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	ModbusTerm: ModbusRtuMaster_KL6x22B;
+	
+	MB_UnitID : BYTE := 0;
+	MB_Address : WORD := 0;
+	MB_Quantity : WORD := 2;
+	MB_ReadData : ModbusRealWordUnion;
+
+	MB_TrigRead : BOOL := FALSE;
+	MB_CommState: (TRIGGER, TRIGGERED, WAIT_RESPONSE, SETUP_NEXT_MESSAGE) := TRIGGER;
+	tmrDelay: TON;
+END_VAR
+
+VAR
+	EMNum:INT;
+	MessageNum:INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (MB_UnitID < MB_FirstUnitID) OR (MB_UnitID>MB_LastUnitID) THEN 
+	
+	MB_UnitID:=MB_FirstUnitID;
+	EMNum:=1;
+	MessageNum:=1;
+	MB_Address:=0;
+
+END_IF
+
+ModbusTerm(
+	UnitID:= MB_UnitID, 
+	Quantity:= MB_Quantity, 
+	MBAddr:= MB_Address, 
+	cbLength:= SIZEOF(MB_ReadData), 
+	pMemoryAddr:= ADR(MB_ReadData), 
+	Execute:= MB_TrigRead, 
+	Timeout:= T#2S, 
+	BUSY=> , 
+	Error=> , 
+	ErrorId=> , 
+	cbRead=> );
+	
+	
+CASE MB_CommState OF
+	TRIGGER:
+			tmrDelay(in:=TRUE, PT:=T#1S);
+			
+			IF tmrDelay.Q THEN 
+				MB_TrigRead:=TRUE;
+				MB_CommState:=TRIGGERED;
+			END_IF
+			
+	TRIGGERED:
+			tmrDelay(in:=FALSE, PT:=T#1S);
+
+
+
+END_CASE
+	
+	
+	
+	]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
