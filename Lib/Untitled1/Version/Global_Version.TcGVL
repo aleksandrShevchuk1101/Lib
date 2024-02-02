@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Global_Version" Id="{f7368a05-fad0-42ea-91cb-e4b6d822746d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	{attribute 'const_non_replaced'}
+	stLibVersion_DECI_AIS_Lib: ST_LibVersion := (iMajor:=0, iMinor:= 3, iBuild:=0,
+												 iRevision:=0, nFlags:=0, sVersion := '0.3');
+												 
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
