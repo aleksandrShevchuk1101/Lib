@@ -67,6 +67,12 @@
     <Compile Include="POUs\AccumTimes.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CAC_Analog.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CAC_Average.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -77,6 +83,45 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Modbus_EM.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneATS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneCRAH.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneDI.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneEnergyMeter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneFire_Suppr.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneGen.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneIDF.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneMYAUX_GLP.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OnePDU.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneSTS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneSWBL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneTie_BRK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneUPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -111,6 +156,9 @@
     <None Include="Untitled1.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PinnedGlobalDataType Include="ST_LibVersion" />
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

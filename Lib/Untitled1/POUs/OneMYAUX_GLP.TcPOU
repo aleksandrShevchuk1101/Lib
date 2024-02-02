@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneMYAUX_GLP" Id="{cbfd9e3b-42d1-4e07-ae71-c4448f3b9f99}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneMYAUX_GLP
+VAR_INPUT
+	sur_STS : BOOL;
+	phs_ALM : BOOL;
+	sur_phs_offline : BOOL;
+	
+    BRK119_POS_STS: BOOL;
+	BRK119_TRIP_ALM : BOOL; 
+	BRK119_offline: BOOL;
+	
+    BRK129_POS_STS: BOOL;
+	BRK129_TRIP_ALM : BOOL; 
+	BRK129_offline: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR_TEMP
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i := GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := sur_STS;
+GVL.mb_Input_Coils[i+1] := phs_ALM;
+GVL.mb_Input_Coils[i+2] := sur_phs_offline;
+
+GVL.mb_Input_Coils[i+3] := BRK119_POS_STS;
+GVL.mb_Input_Coils[i+4] := BRK119_TRIP_ALM;
+GVL.mb_Input_Coils[i+5] := BRK119_offline;
+
+GVL.mb_Input_Coils[i+6] := BRK129_POS_STS;
+GVL.mb_Input_Coils[i+7] := BRK129_TRIP_ALM;
+GVL.mb_Input_Coils[i+8] := BRK129_offline;
+
+GVL.nInputCoilIndex := i + 9;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneGen" Id="{797ca4bd-49f6-4bd5-b07a-de964d48c158}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneGen
+VAR_INPUT
+	 Value : BOOL;
+	 Offline : BOOL;
+END_VAR
+VAR_OUTPUT
+	  Gen_Oper_Mode : BOOL;
+	  Gen_EMG_Shut : BOOL;
+END_VAR
+VAR_TEMP
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[i := GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := Value;
+GVL.mb_Input_Coils[i+1] := Offline;
+
+GVL.nInputCoilIndex := i + 2;
+
+i := GVL.nOutputCoilIndex;
+
+Gen_Oper_Mode := GVL.mb_Output_Coils[i+0];
+Gen_EMG_Shut  := GVL.mb_Output_Coils[i+1];
+
+GVL.nOutputCoilIndex := i+2;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CAC_Average" Id="{6470430c-c1d4-4036-a0e4-47dec15dc06d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CAC_Average
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Value:REAL;
+	Alarm: BOOL;
+	OutOfRange: BOOL;
+	Offline: BOOL;
+	
+END_VAR
+
+VAR_TEMP
+	i : INT;
+	modbusReal : ModbusRealWordUnion;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:=GVL.nOutputRegisterIndex;
+modbusReal.wordValue[0]:=GVL.mb_Output_Registers[i+0];
+modbusReal.wordValue[1]:=GVL.mb_Output_Registers[i+1];
+Value:= modbusReal.realValue;
+GVL.nOutputRegisterIndex:=i+2;
+
+i:=GVL.nOutputCoilIndex;
+OutOfRange:=FALSE;
+Offline:=GVL.mb_Output_Coils[i+0];
+Alarm:=GVL.mb_Output_Coils[i+1];
+GVL.nOutputCoilIndex:=i+2;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

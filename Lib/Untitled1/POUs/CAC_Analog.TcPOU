@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CAC_Analog" Id="{b79926e9-9a68-4587-9568-97d434b2a225}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CAC_Analog
+VAR_INPUT
+	Value : REAL;			// from EtherCAT I/O
+	OutOfRange : BOOL;		// from EtherCAT I/O
+	Offline: BOOL;			// from EtherCAT I/O
+END_VAR
+
+VAR
+	SetInclude : BOOL;		// set on graphics, reset by WinCC OA
+	SetExclude : BOOL;		// set on graphics, reset by WinCC OA
+	Excluded : BOOL;		// maintained by WinCC OA
+	Alarm : BOOL;			// maintained by WinCC OA
+	SetIncludeTrig: R_TRIG;	
+	SetExcludeTrig: R_TRIG;
+END_VAR
+VAR_TEMP
+	i: INT;	
+	modbusReal : ModbusRealWordUnion;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i := GVL.nOutputRegisterIndex;
+modbusReal.realValue :=Value;
+GVL.mb_Output_Registers[i+0]:= modbusReal.wordValue[1];
+GVL.mb_Output_Registers[i+1]:= modbusReal.wordValue[2];
+
+i := GVL.nOutputCoilIndex;
+GVL.mb_Output_Coils[i+0]:=OutOfRange;
+GVL.mb_Output_Coils[i+1]:=Offline;
+
+SetIncludeTRig(CLK:=SetInclude);
+
+IF SetIncludeTRig.Q THEN
+	GVL.mb_Output_Coils[i+2]:=TRUE;
+ELSIF SetInclude AND GVL.mb_Output_Coils[i+2] =0 THEN 
+	SetInclude:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

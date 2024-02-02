@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneIDF" Id="{f5d8f620-af03-415b-b945-1f987a1ccc46}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneIDF
+VAR_INPUT
+	sur_STS :BOOL;
+	phs_ALM :BOOL;
+	sur_phs_offline :BOOL;
+	
+	BRK115_POS_STS  :BOOL;
+	BRK115_TRIP_ALM :BOOL;
+	BRK115_offline: BOOL;
+	
+    BRK125_POS_STS: BOOL;
+	BRK125_TRIP_ALM : BOOL; 
+	BRK125_offline: BOOL;
+		
+END_VAR
+VAR_OUTPUT
+END_VAR
+
+VAR_TEMP
+	
+	i:INT;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[i := GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0]:= sur_STS;
+GVL.mb_Input_Coils[i+1]:= phs_ALM; 
+GVL.mb_Input_Coils[i+2]:= sur_phs_offline;
+
+GVL.mb_Input_Coils[i+3]:= BRK115_POS_STS; 
+GVL.mb_Input_Coils[i+4]:= BRK115_TRIP_ALM; 
+GVL.mb_Input_Coils[i+5]:= BRK115_offline; 
+
+GVL.mb_Input_Coils[i+6]:= BRK125_POS_STS; 
+GVL.mb_Input_Coils[i+7]:= BRK125_TRIP_ALM; 
+GVL.mb_Input_Coils[i+8]:= BRK125_offline;
+
+GVL.nInputCoilIndex:=i+9;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
