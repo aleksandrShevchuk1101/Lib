@@ -138,33 +138,11 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="VisualizationManager.TcVMO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="VISUs\AnimCRAH.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>VisualizationManager.TcVMO</DependentUpon>
-    </Compile>
-    <Compile Include="VISUs\Breaker_Status.TcTLO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="VISUs\CRAH_Isolator_Status.TcTLO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="VISUs\CRAH_Status.TcTLO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="VISUs\Dialog_CRAH.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>VisualizationManager.TcVMO</DependentUpon>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="Version" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
