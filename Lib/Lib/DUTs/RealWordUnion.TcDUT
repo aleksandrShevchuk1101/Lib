@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="RealWordUnion" Id="{abf88cda-dca4-451d-b58b-303d22e41431}">
+    <Declaration><![CDATA[TYPE RealWordUnion :
+UNION
+	RealValue: REAL;
+	UDINTValue: UDINT;
+	WordArray: ARRAY[1..2] OF WORD;
+END_UNION
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

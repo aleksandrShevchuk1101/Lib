@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="RTU_STS" Id="{c2c84e8f-cd22-44f3-9f7b-d4b31cbfbfff}">
+    <Declaration><![CDATA[TYPE RTU_STS :
+STRUCT
+	CommsError : BOOL;
+	CommsErrorCode : INT;
+
+	PRI_VA : REAL;
+	PRI_VB : REAL;
+	PRI_VC : REAL;
+	OTP_VA : REAL;
+	OTP_VB : REAL;
+	OTP_VC : REAL;
+	AMPSA : REAL;
+	AMPSB : REAL;
+	AMPSC : REAL;
+	FREQ : REAL;
+	SEC_VA : REAL;
+	SEC_VB : REAL;
+	SEC_VC : REAL;
+	OTP_LOAD_A : REAL;
+	OTP_LOAD_B : REAL;
+	OTP_LOAD_C : REAL;
+	COM_ALM : BOOL;
+	OTP_KW_A : REAL;
+	OTP_KW_B : REAL;
+	OTP_KW_C : REAL;
+	OTP_KVA_A : REAL;
+	OTP_KVA_B : REAL;
+	OTP_KVA_C : REAL;
+	PF_A : REAL;
+	PF_B : REAL;
+	PF_C : REAL;
+
+	OTP_BKR_OPN : BOOL;
+	L1_INP_BKR_OPN : BOOL;
+	L2_INP_BKR_OPN : BOOL;
+	L1_BYP_BKR_TRP : BOOL;
+	L2_BYP_BKR_TRP : BOOL;
+	OTP_BKR_TRP : BOOL;
+	L1_INP_BKR_TRP : BOOL;
+	L2_INP_BKR_TRP : BOOL;
+	FANS_FAIL : BOOL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

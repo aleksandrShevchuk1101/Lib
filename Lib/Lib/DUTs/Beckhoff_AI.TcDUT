@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="Beckhoff_AI" Id="{14342845-8e68-40ec-aac6-058a62e0b78a}">
+    <Declaration><![CDATA[TYPE Beckhoff_AI :
+STRUCT
+	rawValue   : WORD;
+	OutOfRange : BOOL;
+	Offline    : BOOL;
+	Value      : REAL;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

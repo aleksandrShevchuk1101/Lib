@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_THT" Id="{f3310405-1c32-4a22-98c7-3a4f821fa912}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	THT : ARRAY [1..14] OF RTU_THT;
+END_VAR
+
+VAR_GLOBAL CONSTANT
+	Temp_OOR_Min : REAL :=   0.0;
+	Temp_OOR_Max : REAL :=  50.0;
+	RH_OOR_Min   : REAL :=   0.0;
+	RH_OOR_Max   : REAL := 100.0;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

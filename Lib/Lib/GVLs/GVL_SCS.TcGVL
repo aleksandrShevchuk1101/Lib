@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_SCS" Id="{0d6a4028-36be-4cdf-b8e6-9870b88bc51c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	StartInputCoilIndex_DI: 			INT:=0;		// hardwired DI state sent to OA	
+	StartInputCoilIndex_DO: 			INT:=40;	// hardwired DO state sent to OA
+	StartInputCoilIndex_TerminalStatus: INT:=50;	// module state sent to OA
+	StartInputCoilIndex_AI: 			INT:=100;	// AI OutOfRange status sent to OA
+	StartInputCoilIndex_RTUStat:		INT:=150;	// RTU comms status 
+	StartInputCoilIndex_Control:		INT:=200;	// boolean values for control sent by OA
+	StartInputCoilIndex_E_Meter:		INT:=250;	// Energy meter comms status
+	
+	StartOutputCoilIndex_DO: 			INT:=0;		// OA demand for state of digital outputs
+	StartOutputCoilIndex_RTUStat:		INT:= 0;	// not used
+	StartOutputCoilIndex_Control:		INT:=200;	// boolean values for control sent to OA
+	StartOutputCoilIndex_E_Meter:		INT:= 0;	// not used
+	
+	StartInputRegisterIndex_AI: 		INT:=0;		// hardwired AI states sent to OA (each sent as real, using two registers)
+    StartInputRegisterIndex_AO:	        INT:=50;	// hardwired AI states sent to OA (each sent as real, using two registers)
+	StartInputRegisterIndex_RTUStat:	INT:=150;	// RTU comms error codes 
+	StartInputRegisterIndex_Control:	INT:=200;	// integer and real values for control sent by OA
+	StartInputRegisterIndex_E_Meter:	INT:=250;	// Energy meter data 
+
+	StartOutputRegisterIndex_AO: 		INT:=0;		// OA demand for states of analog outputs
+	StartOutputRegisterIndex_RTUStat:	INT:= 0;	// not used
+	StartOutputRegisterIndex_Control:	INT:=200;	// integer and real values for control sent to OA
+	StartOutputRegisterIndex_E_Meter:	INT:= 0;	// not used
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

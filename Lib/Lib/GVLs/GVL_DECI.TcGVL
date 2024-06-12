@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_DECI" Id="{f2c189ad-4dfd-4125-b93b-4f9282b55b8a}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//Date and Time
+    fbGetLocalSystemTime: FB_LocalSystemTime;
+	sSystemDateTime : STRING;
+	sSystemTime : STRING;
+	sSystemDate : STRING;	
+
+	// Coupler state - a UINT that should be 8 if its healthy
+	CouplerStatus AT %I* : UINT;
+	Term02Status AT %I* : WORD;
+	Term03Status AT %I* : WORD;
+	Term04Status AT %I* : WORD;
+	Term05Status AT %I* : WORD;
+	Term06Status AT %I* : WORD;
+	Term07Status AT %I* : WORD;
+	Term08Status AT %I* : WORD;
+	Term09Status AT %I* : WORD;
+	Term10Status AT %I* : WORD;
+	Term11Status AT %I* : WORD;
+	Term12Status AT %I* : WORD;
+	Term13Status AT %I* : WORD;
+	Term14Status AT %I* : WORD;
+	Term15Status AT %I* : WORD;
+	Term16Status AT %I* : WORD;
+	Term17Status AT %I* : WORD;
+	Term18Status AT %I* : WORD;
+	Term19Status AT %I* : WORD;
+	Term20Status AT %I* : WORD;
+	Term21Status AT %I* : WORD;
+	Term22Status AT %I* : WORD;
+	Term23Status AT %I* : WORD;
+	Term24Status AT %I* : WORD;
+	Term25Status AT %I* : WORD;
+	Term26Status AT %I* : WORD;
+	Term27Status AT %I* : WORD;
+	Term28Status AT %I* : WORD;
+	Term29Status AT %I* : WORD;
+	Term30Status AT %I* : WORD;
+	Term31Status AT %I* : WORD;
+	Term32Status AT %I* : WORD;
+	Term33Status AT %I* : WORD;
+	Term34Status AT %I* : WORD;
+	Term35Status AT %I* : WORD;
+	Term36Status AT %I* : WORD;
+    Term37Status AT %I* : WORD;
+    Term38Status AT %I* : WORD;
+    Term39Status AT %I* : WORD;
+    Term40Status AT %I* : WORD;
+	
+	// I/O module status
+	CouplerOffline : BOOL;
+	Term02Offline : BOOL;
+	Term03Offline : BOOL;
+	Term04Offline : BOOL;
+	Term05Offline : BOOL;
+	Term06Offline : BOOL;
+	Term07Offline : BOOL;
+	Term08Offline : BOOL;
+	Term09Offline : BOOL;
+	Term10Offline : BOOL;
+	Term11Offline : BOOL;
+	Term12Offline : BOOL;
+	Term13Offline : BOOL;
+	Term14Offline : BOOL;
+	Term15Offline : BOOL;
+	Term16Offline : BOOL;
+	Term17Offline : BOOL;
+	Term18Offline : BOOL;
+	Term19Offline : BOOL;
+	Term20Offline : BOOL;
+	Term21Offline : BOOL;
+	Term22Offline : BOOL;
+	Term23Offline : BOOL;
+	Term24Offline : BOOL;
+	Term25Offline : BOOL;
+	Term26Offline : BOOL;
+	Term27Offline : BOOL;
+	Term28Offline : BOOL;
+	Term29Offline : BOOL;
+	Term30Offline : BOOL;
+	Term31Offline : BOOL;
+	Term32Offline : BOOL;
+	Term33Offline : BOOL;
+	Term34Offline : BOOL;
+	Term35Offline : BOOL;
+	Term36Offline : BOOL;
+	Term37Offline : BOOL;
+	Term38Offline : BOOL;
+	Term39Offline : BOOL;
+	Term40Offline : BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

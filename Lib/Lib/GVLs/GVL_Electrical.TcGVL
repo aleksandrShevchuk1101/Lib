@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_Electrical" Id="{f5382d4e-4bbb-4ef2-9c59-36cdb3d15a16}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+		StartInputCoilIndex_CRAH : INT := 0;			     // uses 0-29
+	StartInputCoilIndex_SWBL : INT := 30;			     // uses 30-122 (third & fourth switchboards and STS overlap, but no system has these)
+	StartInputCoilIndex_CAC : INT := 0;				     // not used
+	StartInputCoilIndex_STS : INT := 98;			     // uses 98-225 no panel has STS and either GLP or ATS
+	StartInputCoilIndex_GLP : INT := 210;          		 // uses 210-221
+	StartInputCoilIndex_ATS : INT := 222;                // uses 222-244 no panel has ATS and GEN
+	StartInputCoilIndex_GEN : INT := 238;			     // uses 238-247
+	StartInputCoilIndex_UPS : INT := 248;			     // uses 248-262
+	StartInputCoilIndex_TX : INT := 263;			     // uses 263-270
+	StartInputCoilIndex_Fire_Suppr : INT := 273;		 // uses 273-296
+	StartInputCoilIndex_OtherDIs : INT := 297;		     // uses 297-330
+	StartInputCoilIndex_STSRTU : INT := 331;		     // uses 331-407
+ 	StartInputCoilIndex_IO : INT := 408;				 // uses 408-430
+ 	StartInputCoilIndex_RTUStat : INT := 431;		 	 // uses 431-440
+	StartInputCoilIndex_Tie_BRK : INT := 450;            // uses 450-465
+	StartInputCoilIndex_EMG_LIT : INT := 471;			 // uses 471-488
+   
+	StartOutputCoilIndex_CRAH : INT := 0;			     // uses 0-11
+	StartOutputCoilIndex_SWBL : INT := 0;			     // not used
+	StartOutputCoilIndex_CAC : INT := 23;			     // uses 23-52
+	StartOutputCoilIndex_OtherDIs : INT := 0;		     // not used 
+	StartOutputCoilIndex_GEN : INT := 0;	             // not used
+	StartOutputCoilIndex_UPS : INT := 0;	             // not used
+	StartOutputCoilIndex_TX : INT := 0;				     // not used
+	StartOutputCoilIndex_Fire_Suppr : INT := 0;	         // not used
+	StartOutputCoilIndex_ATS : INT := 20;	             // uses 20-22
+	StartOutputCoilIndex_GLP : INT := 0;	      		 // not used
+	StartOutputCoilIndex_Tie_BRK : INT := 0;	         // not used
+	StartOutputCoilIndex_STS : INT := 12;	             // uses 12-19
+	StartOutputCoilIndex_STSRTU : INT := 0;	             // not used
+ 	StartOutputCoilIndex_IO : INT := 0;				 	 // not used
+ 	StartOutputCoilIndex_RTUStat : INT := 0;			 // not used
+	StartOutputCoilIndex_EMG_LIT : INT := 0;	         // not used 
+	
+	StartInputRegisterIndex_CRAH: INT := 0;			     // uses 0-46
+	StartInputRegisterIndex_SWBL: INT := 0;			     // not used
+	StartInputRegisterIndex_CAC: INT := 0;			     // not used
+	StartInputRegisterIndex_OtherDIs : INT := 0;	     // not used
+	StartInputRegisterIndex_GEN : INT := 0;			     // not used
+	StartInputRegisterIndex_UPS : INT := 0;			     // not used
+    StartInputRegisterIndex_TX : INT := 0;			     // not used
+	StartInputRegisterIndex_Fire_Suppr : INT := 0;	     // not used
+	StartInputRegisterIndex_ATS : INT := 0;			     // not used
+	StartInputRegisterIndex_GLP : INT := 0;	    		 // not used
+	StartInputRegisterIndex_Tie_BRK : INT := 0;	         // not used
+	StartInputRegisterIndex_STS : INT := 0;			     // not used
+	StartInputRegisterIndex_STSRTU : INT := 61;			 // uses 61-460
+ 	StartInputRegisterIndex_IO : INT := 0;				 // not used
+ 	StartInputRegisterIndex_RTUStat : INT := 47;		 // uses 47-56
+	StartInputRegisterIndex_EMG_LIT : INT := 0;			 // not used
+		
+	StartOutputRegisterIndex_CRAH: INT := 0;		     // not used
+	StartOutputRegisterIndex_SWBL: INT := 0;		     // not used
+	StartOutputRegisterIndex_CAC: INT := 0;			     // uses 0-10
+	StartOutputRegisterIndex_OtherDIs : INT := 0;	     // not used
+	StartOutputRegisterIndex_GEN : INT := 0;			 // not used
+	StartOutputRegisterIndex_UPS : INT := 0;			 // not used
+	StartOutputRegisterIndex_TX : INT := 0;			     // not used
+	StartOutputRegisterIndex_Fire_Suppr : INT := 0;	     // not used
+	StartOutputRegisterIndex_ATS : INT := 0;		     // not used
+	StartOutputRegisterIndex_GLP : INT := 0;			 // not used
+	StartOutputRegisterIndex_Tie_BRK : INT := 0;		 // not used
+	StartOutputRegisterIndex_STS : INT := 0;			 // not used
+	StartOutputRegisterIndex_STSRTU : INT := 0;			 // not used
+ 	StartOutputRegisterIndex_IO : INT := 0;				 // not used
+ 	StartOutputRegisterIndex_RTUStat : INT := 0;		 // not used
+	StartOutputRegisterIndex_EMG_LIT : INT := 0;	     // not used
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

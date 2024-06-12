@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL" Id="{2261c6fd-33d9-4a07-aaaa-83cca1d03b01}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	mb_Input_Coils    	:	ARRAY [0..511] OF BOOL;
+	mb_Output_Coils 	:   ARRAY [0..511] OF BOOL;
+ 	mb_Input_Registers 	:   ARRAY [0..511] OF WORD;
+ 	mb_Output_Registers :   ARRAY [0..255] OF WORD;
+	
+	nInputCoilIndex: INT;
+	nOutputCoilIndex: INT;
+	nInputRegisterIndex: INT;
+	nOutputRegisterIndex: INT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

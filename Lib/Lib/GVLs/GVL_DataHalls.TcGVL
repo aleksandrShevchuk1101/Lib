@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_DataHalls" Id="{10995e41-c538-4e5e-b8b0-e818f82ae325}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	StartInputCoilIndex_CRAH : INT := 0;			// uses 0-95
+	StartInputCoilIndex_PDU : INT := 120;			// uses 120-295 
+	StartInputCoilIndex_CAC : INT := 0;				// not used
+	StartInputCoilIndex_IDF : INT := 310;           // uses 310-331
+	StartInputCoilIndex_GLP : INT := 350;           // uses 350-361
+	StartInputCoilIndex_ATS : INT := 370;           // uses 370-385
+	StartInputCoilIndex_OtherDIs : INT := 400;		// uses 400-411
+	StartInputCoilIndex_E_METER : INT := 420;		// uses 420-421
+	StartInputCoilIndex_IO : INT := 430;			// uses 430-469
+    StartInputCoilIndex_RTUStat : INT := 480;		// uses 480-495
+	
+	StartOutputCoilIndex_CRAH : INT := 0;			// uses 0-31
+	StartOutputCoilIndex_PDU : INT := 0;			// not used
+	StartOutputCoilIndex_CAC : INT := 80;			// uses 80-447
+	StartOutputCoilIndex_OtherDIs : INT := 0;		// not used
+	StartoutputCoilIndex_E_METER : INT := 0;		// not used
+	StartoutputCoilIndex_IO : INT := 0;				// not used
+	StartoutputCoilIndex_IDF : INT := 0;	        // not used
+	StartoutputCoilIndex_GLP : INT := 0;	        // not used
+	StartoutputCoilIndex_ATS : INT := 60;	        // uses 60-65
+	StartOutputCoilIndex_RTUStat : INT := 0;	    // not used
+	
+	StartInputRegisterIndex_CRAH: INT := 0;			// uses 0-127
+	StartInputRegisterIndex_PDU: INT := 0;			// not used
+	StartInputRegisterIndex_CAC: INT := 0;			// not used
+	StartInputRegisterIndex_OtherDIs : INT := 0;	// not used
+	StartInputRegisterIndex_E_METER : INT := 128;	// uses 128-154
+    StartInputRegisterIndex_IO : INT := 0;			// not used
+	StartInputRegisterIndex_IDF : INT := 0;			// not used
+	StartInputRegisterIndex_GLP : INT := 0;			// not used
+	StartInputRegisterIndex_ATS : INT := 0;			// not used
+	StartInputRegisterIndex_RTUStat : INT := 161;	// uses 161-176 
+		
+	StartOutputRegisterIndex_CRAH: INT := 0;		// not used
+	StartOutputRegisterIndex_PDU: INT := 0;			// not used
+	StartOutputRegisterIndex_CAC: INT := 0;			// uses 0-143
+	StartOutputRegisterIndex_OtherDIs : INT := 0;	// not used
+	StartoutputRegisterIndex_E_METER : INT := 0;	// not used
+	StartoutputRegisterIndex_IO : INT := 0;			// not used
+	StartoutputRegisterIndex_IDF : INT := 0;		// not used
+	StartoutputRegisterIndex_GLP : INT := 0;		// not used
+	StartoutputRegisterIndex_ATS : INT := 0;		// not used
+	StartOutputRegisterIndex_RTUStat : INT := 0;	// not used
+	
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

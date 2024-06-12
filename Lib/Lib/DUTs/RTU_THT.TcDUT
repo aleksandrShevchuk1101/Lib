@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="RTU_THT" Id="{2e689b1f-ab1d-49b8-a9c9-1977a0570f4d}">
+    <Declaration><![CDATA[TYPE RTU_THT :
+STRUCT
+	Temp: REAL;
+	RH: REAL;
+	Temp_OOR : BOOL;
+	RH_OOR : BOOL;
+	CommsError : BOOL;
+	CommsErrorCode : INT;	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
