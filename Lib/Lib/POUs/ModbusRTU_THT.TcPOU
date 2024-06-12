@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ModbusRTU_THT" Id="{bc617fc4-8cb3-49fb-8747-b3104be00f2a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusRTU_THT
+VAR_INPUT
+	MB_FirstUnitID: BYTE;
+	MB_LastUnitID: BYTE;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	ModbusTerm: ModbusRtuMasterV2_KL6x22B;
+	
+	MB_UnitID:   BYTE := 0;
+	MB_Address:  WORD := 25;
+	MB_Quantity: WORD := 4;
+	MB_ReadData: ARRAY[1..2] OF ModbusUnion;
+	
+	MB_TrigRead: BOOL :=FALSE;
+	MB_CommState: (TRIGGER, TRIGGERED, WAIT_RESPONSE):=TRIGGER;
+	tmrDelay: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF MB_UnitID < MB_FirstUnitID THEN 
+	MB_UnitID:= MB_FirstUnitID;
+END_IF
+
+IF MB_UnitID > MB_LastUnitID THEN 
+	MB_UnitID:= MB_FirstUnitID;
+END_IF
+
+ModbusTerm.ReadRegs(
+	UnitID:= MB_UnitID, 
+	Quantity:= MB_Quantity, 
+	MBAddr:= MB_Address, 
+	cbLength:= SIZEOF(MB_ReadData), 
+	pMemoryAddr:= ADR(MB_ReadData),  
+	Execute:= MB_TrigRead, 
+	Timeout:= T#2S, 
+	BUSY=> , 
+	Error=> , 
+	ErrorId=> , 
+	cbRead=> );
+	
+CASE MB_CommState OF 
+	TRIGGER:
+		tmrDelay(in:=TRUE, PT:=T#1S);
+		IF tmrDelay.Q THEN
+			MB_TrigRead:=TRUE;
+			MB_CommState:=TRIGGERED;
+		END_IF
+		
+	TRIGGERED:
+		tmrDelay(in:=FALSE, PT:=T#1S);
+		MB_TrigRead:=FALSE;
+		MB_CommState:=WAIT_RESPONSE;
+		
+	WAIT_RESPONSE:
+		IF NOT ModbusTerm.BUSY THEN 
+			GVL_THT.THT[MB_UnitID].CommsError:= ModbusTerm.Error;
+			GVL_THT.THT[MB_UnitID].CommsErrorCode:= ModbusTerm.ErrorId;
+			
+			IF NOT ModbusTerm.Error THEN 
+				GVL_THT.THT[MB_UnitID].Temp:= MB_ReadData[1].realValue;
+				GVL_THT.THT[MB_UnitID].RH  := MB_ReadData[2].realValue;
+				
+				
+				GVL_THT.THT[MB_UnitID].Temp_OOR:= (GVL_THT.THT[MB_UnitID].Temp < GVL_THT.Temp_OOR_Min) OR 
+												  (GVL_THT.THT[MB_UnitID].Temp > GVL_THT.Temp_OOR_Max);
+												  
+				GVL_THT.THT[MB_UnitID].Rh_OOR:= (GVL_THT.THT[MB_UnitID].RH < GVL_THT.RH_OOR_Min) OR 
+												(GVL_THT.THT[MB_UnitID].RH > GVL_THT.RH_OOR_Max);		   
+				
+			END_IF
+		
+			MB_UnitID := MB_UnitID + 1;
+			MB_CommState := TRIGGER;
+	
+		END_IF
+END_CASE
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
