@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="AI_OOR" Id="{bb56daec-810b-400a-aa03-93e6bfb7ea6b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AI_OOR : bool
+VAR_INPUT
+	Status: WORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// calculate whether the status for an analog input is indicating an error
+// the error bit is the 7th bit of the status word
+// access to bits is base 0, so the 7th bit is accessed with index 6
+
+AI_OOR:= Status.6;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
