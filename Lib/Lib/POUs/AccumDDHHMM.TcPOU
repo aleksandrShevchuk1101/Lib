@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="AccomDDHHMM" Id="{5199796b-956b-43e3-8121-00b9dc5b3dd7}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK AccomDDHHMM
+  <POU Name="AccumDDHHMM" Id="{5199796b-956b-43e3-8121-00b9dc5b3dd7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AccumDDHHMM
 VAR_INPUT
 	State: BOOL;
 	Retentive: BOOL;
