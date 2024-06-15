@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneDI" Id="{58a75aeb-2b4d-4cd7-9779-5d5a4b8f9913}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneDI
+VAR_INPUT
+	Value: BOOL;
+	Offline: BOOL;	
+END_VAR
+
+VAR_TEMP
+	i:INT;
+	
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:=GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0]:= Value;
+GVL.mb_Input_Coils[i+1]:= Offline;
+
+GVL.nInputCoilIndex:=i+2;
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

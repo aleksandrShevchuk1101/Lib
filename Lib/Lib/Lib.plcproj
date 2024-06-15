@@ -88,10 +88,31 @@
     <Compile Include="POUs\AI_OOR.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CAC_Analog.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CAC_Average.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CAC_Mirror.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_AI_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_AO_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\ModbusRTU_EM_Bell.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ModbusRTU_THT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneDI.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

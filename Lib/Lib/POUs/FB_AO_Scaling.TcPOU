@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_AO_Scaling" Id="{752aad62-d718-407f-a5c7-1b9dcb919cc1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AO_Scaling
+VAR_INPUT
+	I_Input:REAL;
+	I_Input_Min:REAL:=0;
+	I_Input_Max:REAL:=100;
+	I_Output_Min:REAL :=0;
+	I_Output_Max:REAL :=0;
+END_VAR
+
+VAR_OUTPUT
+	O_Output: INT;
+	O_Error: BOOL;
+END_VAR
+
+VAR
+	L_Input:REAL;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+	modbusReal: ModbusUnion;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF I_Input_Max <> 0 AND I_Output_Max <> 0 THEN 
+	IF I_Input <=I_Input_Max THEN 	
+		L_Input:= I_Input;
+		O_Output:= REAL_TO_INT((I_Output_Max - I_Output_Min) / (I_Input_Max - I_Input_Min) * (I_input - I_Input_Min) + I_Output_Min);
+		O_Error:= FALSE;	
+	ELSE
+		I_Input:= L_Input;	
+	END_IF
+ELSE	
+	O_Error:= TRUE;
+END_IF
+
+i:= GVL.nInputRegisterIndex;
+modbusReal.realValue := L_Input;
+GVL.mb_Input_Registers[i+0] := modbusReal.WordValue[1];
+GVL.mb_Input_Registers[i+1] := modbusReal.WordValue[2];
+GVL.nInputRegisterIndex := i+2;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

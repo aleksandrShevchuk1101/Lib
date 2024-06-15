@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CAC_Analog" Id="{450b8a48-0ec9-4983-bbe4-b20a7004d0f8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CAC_Analog
+VAR_INPUT
+	Value: REAL;
+	OutOfRange : BOOL;
+	Offline: BOOL;
+END_VAR
+VAR
+	SetInclude: BOOL;
+	SetExclude : BOOL;
+	Excluded: BOOL;
+	Alarm : BOOL;
+	SetIncludeTrig: R_TRIG;
+	SetExcludeTrig: R_TRIG;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+	modbusReal: ModbusUnion;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nOutputRegisterIndex;
+modbusReal.realValue:= Value;
+GVL.mb_Output_Registers[i+0]:= modbusReal.wordValue[1];
+GVL.mb_Output_Registers[i+1]:= modbusReal.wordValue[2];
+GVL.nOutputRegisterIndex:=i+2;
+
+i:= GVL.nOutputCoilIndex;
+GVL.mb_Output_Coils[i]:= OutOfRange;
+GVL.mb_Output_Coils[i+1]:= Offline;
+
+SetIncludeTrig(CLK:= SetInclude);
+IF SetIncludeTrig.Q THEN 
+	GVL.mb_Output_Coils[i+2]:= TRUE;
+ELSIF SetInclude AND GVL.mb_Output_Coils[i+2] = FALSE THEN
+ 	SetInclude:=FALSE;
+END_IF
+
+
+SetExcludeTrig(CLK:=SetExclude);
+IF SetExcludeTrig.Q THEN 
+	GVL.mb_Output_Coils[i+3]:= TRUE;	
+ELSIF SetExclude AND GVL.mb_Output_Coils[i+3]= FALSE THEN 
+	SetExclude:=FALSE;
+END_IF
+
+
+Excluded:= GVL.mb_Output_Coils[i+4];
+Alarm:= GVL.mb_Output_Coils[i+5];
+
+GVL.nOutputCoilIndex:= i + 6;
+
+
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
