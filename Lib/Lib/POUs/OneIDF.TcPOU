@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneIDF" Id="{5360e68e-c4ab-49e1-85b7-c202d573c28c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneIDF
+VAR_INPUT
+	sur_STS : BOOL;
+	phs_ALM : BOOL;
+	sur_phs_offline : BOOL;
+	
+	BRK115_POS_STS: BOOL;
+	BRK115_TRIP_ALM : BOOL; 
+	BRK115_offline: BOOL;
+	
+    BRK125_POS_STS: BOOL;
+	BRK125_TRIP_ALM : BOOL; 
+	BRK125_offline: BOOL;
+
+	INCOMER_TRIP_ALM : BOOL; 
+	INCOMER_offline: BOOL;
+END_VAR
+
+VAR
+		i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+i := GVL.nInputCoilIndex;
+
+GVL.nInputCoilIndex[i+0] := sur_STS;
+GVL.nInputCoilIndex[i+1] := phs_ALM;
+GVL.nInputCoilIndex[i+2] := sur_phs_offline;
+
+GVL.nInputCoilIndex[i+3] := BRK115_POS_STS;
+GVL.nInputCoilIndex[i+4] := BRK115_TRIP_ALM;
+GVL.nInputCoilIndex[i+5] := BRK115_offline;
+
+GVL.nInputCoilIndex[i+6] := BRK125_POS_STS;
+GVL.nInputCoilIndex[i+7] := BRK125_TRIP_ALM;
+GVL.nInputCoilIndex[i+8] := BRK125_offline;
+
+GVL.nInputCoilIndex[i+9] := INCOMER_TRIP_ALM;
+GVL.nInputCoilIndex[i+10]:= INCOMER_offline;
+
+GVL.nInputCoilIndex := i + 11; ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

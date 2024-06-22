@@ -109,13 +109,28 @@
     <Compile Include="POUs\ModbusRTU_EM_Bell.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\ModbusRTU_EM_Integra.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\ModbusRTU_STS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ModbusRTU_THT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneATS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\OneDI.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\OneGen.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneGLP.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneIDF.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -129,6 +144,7 @@
   <ItemGroup>
     <PlaceholderReference Include="Tc2_ModbusRTU">
       <DefaultResolution>Tc2_ModbusRTU, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_ModbusRTU</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>

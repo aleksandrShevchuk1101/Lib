@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ModbusRTU_EM_Integra" Id="{c8ba5208-333e-4614-bb29-f463853cde30}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusRTU_EM_Integra
+VAR_INPUT
+	MB_FirstUnitID: BYTE;
+	MB_LastUnitID: BYTE;
+	EM_First: INT := 1;
+END_VAR
+
+VAR
+	ModbusTerm: ModbusRtuMaster_KL6x22B;
+	
+	MB_UnitID : BYTE := 0;
+	MB_Address : WORD := 0;
+	MB_Quantity : WORD := 2;
+	MB_ReadData : ModbusUnion;
+
+	MB_TrigRead : BOOL := FALSE;
+	MB_CommState: (TRIGGER, TRIGGERED, WAIT_RESPONSE, SETUP_NEXT_MESSAGE) := TRIGGER;
+	tmrDelay: TON;
+END_VAR
+
+
+VAR CONSTANT
+	MODBUS_DELAY : TIME := T#100MS;
+END_VAR
+
+VAR	
+	EMNum: INT;
+	MessageNum: INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (MB_UnitID < MB_FirstUnitID) THEN
+	MB_UnitID := MB_FirstUnitID;
+	EMNum := EM_First;
+	MessageNum := 1;
+	MB_Address := 0;
+END_IF
+
+IF (MB_UnitID > MB_LastUnitID) THEN
+	MB_UnitID := MB_FirstUnitID;
+	EMNum := EM_First;
+	MessageNum := 1;
+	MB_Address := 0;
+END_IF
+
+ModbusTerm.ReadRegs(
+	UnitID:= MB_UnitID, 
+	Quantity:= MB_Quantity, 
+	MBAddr:= MB_Address, 
+	cbLength:= SIZEOF(MB_ReadData), 
+	pMemoryAddr:= ADR(MB_ReadData), 
+	Execute:= MB_TrigRead, 
+	Timeout:= T#1S, 
+	BUSY=> , 
+	Error=> , 
+	ErrorID=> , 
+	cbRead=> );
+	
+	
+CASE MB_CommState OF
+	TRIGGER:
+		tmrDelay(IN:=TRUE, PT:=MODBUS_DELAY);
+		IF tmrDelay.Q THEN
+			MB_TrigRead := TRUE;
+			MB_CommState := TRIGGERED;
+		END_IF
+
+	TRIGGERED:
+		tmrDelay(IN:=FALSE, PT:=MODBUS_DELAY);
+		MB_TrigRead := FALSE;
+		MB_CommState := WAIT_RESPONSE;
+
+	WAIT_RESPONSE:
+		IF NOT ModbusTerm.BUSY THEN
+			GVL_EM.EM[EMNum].CommsError     := ModbusTerm.Error;
+			GVL_EM.EM[EMNum].CommsErrorCode := ModbusTerm.ErrorId;
+			IF NOT ModbusTerm.Error THEN
+				IF MessageNum = 1 THEN
+					GVL_EM.EM[EMNum].Status := MB_ReadData.wordValue[2];
+				ELSIF MessageNum = 2 THEN
+					GVL_EM.EM[EMNum].Operating_Hrs := MB_ReadData.realValue;
+				ELSIF MessageNum = 3 THEN
+					GVL_EM.EM[EMNum].Energy := MB_ReadData.realValue;
+				ELSIF MessageNum = 4 THEN
+					GVL_EM.EM[EMNum].Volume := MB_ReadData.realValue;
+				ELSIF MessageNum = 5 THEN
+					GVL_EM.EM[EMNum].Supply_Temp := MB_ReadData.realValue;
+				ELSIF MessageNum = 6 THEN
+					GVL_EM.EM[EMNum].Return_Temp := MB_ReadData.realValue;
+				ELSIF MessageNum = 7 THEN
+					GVL_EM.EM[EMNum].Temp_Diff := MB_ReadData.realValue;
+ 				END_IF
+ 
+			END_IF
+			
+			MB_CommState := SETUP_NEXT_MESSAGE;
+		END_IF
+
+	SETUP_NEXT_MESSAGE:
+		MessageNum := MessageNum + 1;
+		IF MessageNum > 7 THEN
+			MessageNum := 1;
+			MB_UnitID := MB_UnitID + 1;
+			EMNum := EMNum + 1;
+		END_IF
+
+		IF MessageNum = 1 THEN
+			MB_Address := 0;	// read status in word 2
+		ELSIF MessageNum = 2 THEN
+			MB_Address := 6;	// read operating hours
+		ELSIF MessageNum = 3 THEN
+			MB_Address := 100;	// read energy
+		ELSIF MessageNum = 4 THEN
+			MB_Address := 200;	// read volume
+		ELSIF MessageNum = 5 THEN
+			MB_Address := 800;	// read supply temperature
+		ELSIF MessageNum = 6 THEN
+			MB_Address := 810;	// read return temperature
+		ELSIF MessageNum = 7 THEN
+			MB_Address := 820;	// read temperature difference
+		END_IF
+	
+		MB_CommState := TRIGGER;
+END_CASE
+	
+	
+	]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

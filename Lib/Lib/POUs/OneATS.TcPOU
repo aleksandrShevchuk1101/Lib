@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneATS" Id="{5b0bb218-478d-46f6-8c22-07d3e4d6d91c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneATS
+VAR_INPUT
+	ATS_Avai: BOOL;
+	ATS_Avai_Offline : BOOL;
+	ATS_SP1 : BOOL;
+	ATS_SP1_Offline : BOOL;
+	ATS_SP2 : BOOL;
+	ATS_SP2_Offline : BOOL;
+	ATS_SP0 : BOOL;
+	ATS_SP0_Offline : BOOL;
+END_VAR
+VAR_OUTPUT
+	
+	Net_Priority : BOOL;
+	Source_Priority : BOOL;
+	Inhibited: BOOL;
+	
+END_VAR
+
+VAR_TEMP
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[i := GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := ATS_Avai;
+GVL.mb_Input_Coils[i+1] := ATS_Avai_Offline;
+
+GVL.mb_Input_Coils[i+2] := ATS_SP1;
+GVL.mb_Input_Coils[i+3] := ATS_SP1_Offline;
+
+GVL.mb_Input_Coils[i+4] := ATS_SP2;
+GVL.mb_Input_Coils[i+5] := ATS_SP2_Offline;
+
+GVL.mb_Input_Coils[i+6] := ATS_SP0;
+GVL.mb_Input_Coils[i+7] := ATS_SP0_Offline;
+
+GVL.nInputCoilIndex := i + 8;
+
+i:= GVL.nOutputCoilIndex;
+
+Net_Priority := GVL.mb_Output_Coils[i+0];
+Source_Priority :=  GVL.mb_Output_Coils[i+1];
+Inhibited := GVL.mb_Output_Coils[i+2];
+
+GVL.nOutputCoilIndex := i +3; 
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

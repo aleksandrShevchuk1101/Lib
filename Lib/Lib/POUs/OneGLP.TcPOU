@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneGLP" Id="{21efca08-cfe2-4f4c-a0f8-111551169fe2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneGLP
+VAR_INPUT
+	sur_STS:BOOL;
+	phs_ALM:BOOL;
+	sur_phs_offline: BOOL;
+	
+	BRK119_POS_STS: BOOL;
+	BRK119_TRIP_ALM : BOOL; 
+	BRK119_offline: BOOL;
+	
+    BRK129_POS_STS: BOOL;
+	BRK129_TRIP_ALM : BOOL; 
+	BRK129_offline: BOOL;
+	
+    BRK450_POS_STS: BOOL;
+	BRK450_TRIP_ALM : BOOL; 
+	BRK450_offline: BOOL;	
+END_VAR
+
+VAR_TEMP
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+i:= GVL.nInputCoilIndex;
+
+gvl.mb_Input_Coils[i+0]:= sur_STS;
+gvl.mb_Input_Coils[i+1]:= phs_ALM;
+gvl.mb_Input_Coils[i+2]:= sur_phs_offline;
+
+gvl.mb_Input_Coils[i+3]:= BRK119_POS_STS;
+gvl.mb_Input_Coils[i+4]:= BRK119_TRIP_ALM;
+gvl.mb_Input_Coils[i+5]:= BRK119_offline;
+
+gvl.mb_Input_Coils[i+6]:= BRK129_POS_STS;
+gvl.mb_Input_Coils[i+7]:= BRK129_TRIP_ALM;
+gvl.mb_Input_Coils[i+8]:= BRK129_offline;
+
+gvl.mb_Input_Coils[i+9]:= BRK450_POS_STS;
+gvl.mb_Input_Coils[i+10]:= BRK450_TRIP_ALM;
+gvl.mb_Input_Coils[i+11]:= BRK450_offline;
+
+GVL.nInputCoilIndex:= i + 12;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
