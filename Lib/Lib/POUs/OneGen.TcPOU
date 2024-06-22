@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneGen" Id="{d7f44278-b0ae-42ad-9222-77973bb085fe}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneGen
+VAR_INPUT
+	Run: BOOL;
+	Run_Offline: BOOL;
+	Warn: BOOL;
+	Warn_Offline: BOOL;
+	Alarm: BOOL;
+	Alarm_Offline: BOOL;
+	NotRdy: BOOL;
+	NotRdy_Offline: BOOL;
+	EmgMode: BOOL;
+	EmgMode_Offline: BOOL;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nInputCoilIndex;
+
+gvl.mb_Input_Coils[i+0]:= Run;
+gvl.mb_Input_Coils[i+1]:= Run_Offline;
+gvl.mb_Input_Coils[i+2]:= Warn;
+gvl.mb_Input_Coils[i+3]:= Warn_Offline;
+gvl.mb_Input_Coils[i+4]:= Alarm;
+gvl.mb_Input_Coils[i+5]:= Alarm_Offline;
+gvl.mb_Input_Coils[i+6]:= NotRdy;
+gvl.mb_Input_Coils[i+7]:= NotRdy_Offline;
+gvl.mb_Input_Coils[i+8]:= EmgMode;
+gvl.mb_Input_Coils[i+9]:= EmgMode_Offline;
+
+
+GVL.nInputCoilIndex := i + 10;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
