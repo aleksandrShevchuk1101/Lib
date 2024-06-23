@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="WriteModbusBool" Id="{3206a8bd-43fb-4181-b282-68b6f0b081f4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK WriteModbusBool
+VAR_INPUT
+	L_Input: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nInputCoilIndex;
+GVL.mb_Input_Coils[i+0]:= L_Input;
+
+GVL.nInputCoilIndex:= i+1;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ReadModbusBool" Id="{e0d1f463-ea3b-4850-9582-14a71597fa84}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ReadModbusBool : bool
+VAR_INPUT
+END_VAR
+VAR
+	i: INT;
+	modbusBool: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[i := GVL.nOutputCoilIndex;
+
+modbusBool := GVL.mb_Output_Coils[i+0];
+
+GVL.nOutputCoilIndex := i+1;
+
+ReadModbusBool:= modbusBool;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ReadModbusReal" Id="{7a0c48b0-0cf1-456c-a39d-c4b05fddbe23}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ReadModbusReal : REAL
+VAR
+	i: INT;
+	modbusReal: ModbusUnion;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nOutputRegisterIndex;
+
+modbusReal.wordValue[1]:= GVL.mb_Output_Registers[i+0];
+modbusReal.wordValue[2]:= GVL.mb_Output_Registers[i+1];
+
+GVL.nOutputRegisterIndex:= i + 2;
+
+ReadModbusReal:=modbusReal.realValue;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ReadModusTime" Id="{2f3a2243-5d01-4e49-848f-77986b00727c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ReadModusTime : Time
+VAR_INPUT
+END_VAR
+VAR
+	i: INT;
+	modbusTime: ModbusUnion;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nOutputRegisterIndex;
+
+modbusTime.longValue:= GVL.mb_Output_Registers[i+0] * 1000;
+
+GVL.nOutputRegisterIndex:= i + 0;
+
+
+ReadModusTime := modbusTime.timeValue; ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

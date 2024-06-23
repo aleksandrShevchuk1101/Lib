@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="WriteModbusWord" Id="{b110e550-72b8-48e3-80e2-886388380d0d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK WriteModbusWord
+VAR_INPUT
+	L_input: WORD;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nInputRegisterIndex;
+
+GVL.mb_Input_Registers[i+0]:= L_input;
+GVL.nInputRegisterIndex:= i+1;
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
