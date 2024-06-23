@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneEnergyMeter" Id="{370f325b-6e68-424d-80a7-90b1e9d64bb1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneEnergyMeter
+VAR_INPUT
+	Status: WORD;
+	Operating_Hrs: REAL;
+	Energy: REAL;
+	Volume: REAL;
+	Supply_Temp: REAL;
+	Return_Temp: REAL;
+	Temp_Diff: REAL;
+	Offline: BOOL;
+
+END_VAR
+
+VAR_TEMP
+	i:INT;
+	modbusReal: ModbusUnion;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nInputRegisterIndex;
+
+GVL.mb_Input_Registers[i+0]:= Status;
+
+modbusReal.realValue:= Operating_Hrs;
+GVL.mb_Input_Registers[i+2]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+3]:= modbusReal.wordValue[2];
+
+modbusReal.realValue:= Energy;
+GVL.mb_Input_Registers[i+4]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+5]:= modbusReal.wordValue[2];
+
+modbusReal.realValue:= Volume;
+GVL.mb_Input_Registers[i+6]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+7]:= modbusReal.wordValue[2];
+
+modbusReal.realValue:= Supply_Temp;
+GVL.mb_Input_Registers[i+8]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+9]:= modbusReal.wordValue[2];
+
+modbusReal.realValue:= Return_Temp;
+GVL.mb_Input_Registers[i+10]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+11]:= modbusReal.wordValue[2];
+
+modbusReal.realValue:= Temp_Diff;
+GVL.mb_Input_Registers[i+12]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+13]:= modbusReal.wordValue[2];
+
+GVL.nInputRegisterIndex:= i + 14;
+
+i:= GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0]:= Offline;
+
+GVL.nInputCoilIndex:= i+1;
+
+
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneTie_BRK" Id="{9d3f632e-08dd-4968-a4ce-f5cefcdb4b37}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneTie_BRK
+VAR_INPUT
+	
+	TIEBKR_STS: BOOL;
+	TIEBKR_STS_Offline: BOOL;
+	
+	TIEBKR_RCKIN : BOOL;
+	TIEBKR_RCKIN_Offline : BOOL;
+	
+	TIEBKR_TEST : BOOL;
+	TIEBKR_TEST_Offline : BOOL;
+	
+	TIEBKR_RCKOUT : BOOL;
+	TIEBKR_RCKOUT_Offline : BOOL;
+
+END_VAR
+
+VAR_TEMP
+	i:INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := TIEBKR_STS;
+GVL.mb_Input_Coils[i+1] := TIEBKR_STS_Offline;
+
+GVL.mb_Input_Coils[i+2] := TIEBKR_RCKIN;
+GVL.mb_Input_Coils[i+3] := TIEBKR_RCKIN_Offline;
+
+GVL.mb_Input_Coils[i+4] := TIEBKR_TEST;
+GVL.mb_Input_Coils[i+5] := TIEBKR_TEST_Offline;
+
+GVL.mb_Input_Coils[i+6] := TIEBKR_RCKOUT;
+GVL.mb_Input_Coils[i+7] := TIEBKR_RCKOUT_Offline;
+
+GVL.nInputCoilIndex := i + 8; ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneSTS" Id="{13c7833c-219b-4dc9-a6e9-e7507ddf44c3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneSTS
+VAR_INPUT
+	Trans_Inhibt : BOOL;
+	Trans_Inhibt_Offline : BOOL;
+    Com_Alm : BOOL;
+	Com_Alm_Offline: BOOL;
+    Fan_Fail : BOOL;
+	Fan_Fail_Offline : BOOL;
+	
+    Load_Line_1 : BOOL;
+	Load_Line_1_Offline : BOOL;
+    Load_Line_2 : BOOL;
+	Load_Line_2_Offline : BOOL;
+	
+    Load_Line_1_ByPass : BOOL;
+	LL_1_ByPass_offline : BOOL;
+    Load_Line_2_ByPass : BOOL;
+	LL_2_ByPass_offline : BOOL;
+	Load_DisCon : BOOL;
+	Load_DisCon_Offline : BOOL;
+END_VAR
+
+VAR_OUTPUT
+	STS_Inhibited : BOOL;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+i:= GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0]:= Trans_Inhibt;
+GVL.mb_Input_Coils[i+1]:= Trans_Inhibt_Offline;
+
+GVL.mb_Input_Coils[i+2]:= Com_Alm;
+GVL.mb_Input_Coils[i+3]:= Com_Alm_Offline;
+
+GVL.mb_Input_Coils[i+4]:= Fan_Fail;
+GVL.mb_Input_Coils[i+5]:= Fan_Fail_Offline;
+
+GVL.mb_Input_Coils[i+6]:= Load_Line_1;
+GVL.mb_Input_Coils[i+7]:= Load_Line_1_Offline;
+
+GVL.mb_Input_Coils[i+8]:= Load_Line_2;
+GVL.mb_Input_Coils[i+9]:= Load_Line_2_Offline;
+
+GVL.mb_Input_Coils[i+10]:= Load_Line_1_ByPass;
+GVL.mb_Input_Coils[i+11]:= LL_1_ByPass_offline;
+
+GVL.mb_Input_Coils[i+12]:= Load_Line_2_ByPass;
+GVL.mb_Input_Coils[i+13]:= LL_2_ByPass_offline;
+
+GVL.mb_Input_Coils[i+14]:= Load_DisCon;
+GVL.mb_Input_Coils[i+15]:= Load_DisCon_Offline;
+
+GVL.nInputCoilIndex:= i+16; 
+
+i:= GVL.nOutputCoilIndex;
+STS_Inhibited:= GVL.mb_Output_Coils[i+0];
+
+GVL.nOutputCoilIndex:= i + 1;
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

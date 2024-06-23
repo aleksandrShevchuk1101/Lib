@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneCRAH" Id="{0c2c7e12-1929-465f-bec6-35c8b27608ab}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneCRAH
+VAR_INPUT
+	Running: BOOL;
+	Alarm: BOOL;
+	Iso1_1_Sts: BOOL;
+	Iso1_2_Sts: BOOL;
+	Offline: BOOL;	
+END_VAR
+
+VAR_OUTPUT
+	Enable: BOOL;	
+END_VAR
+
+VAR PERSISTENT
+	Maintenance: BOOL;
+	Inhibited: BOOL;
+	HOA: WORD;
+	Run: AccumTimes;
+	Alm: AccumTimes;
+	Ena: AccumTimes;
+END_VAR
+
+VAR_TEMP
+	i: INT;
+	modbusReal: ModbusUnion; 
+END_VAR
+
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Run(State:= Running);
+Alm(State:= Alarm);
+Ena(State:= Enable);
+
+i:= GVL.nInputCoilIndex;
+
+GVL.nInputCoilIndex[i+0] :=  Running;
+GVL.nInputCoilIndex[i+1] :=  Alarm;
+GVL.nInputCoilIndex[i+2] :=  Offline;
+GVL.nInputCoilIndex[i+3] :=  Iso1_1_Sts;
+GVL.nInputCoilIndex[i+4] :=  Iso1_2_Sts;
+
+GVL.nInputCoilIndex := i + 5;
+
+
+i:=GVL.nOutputCoilIndex;
+
+Enable:= GVL.mb_Output_Coils[i+0];
+Inhibited:= GVL.mb_Output_Coils[i+1];
+
+GVL.nOutputCoilIndex:= i + 2;
+
+i:= GVL.nInputRegisterIndex;
+GVL.mb_Input_Registers[i+0]:= HOA;
+GVL.mb_Input_Registers[i+1]:= Run.Num;
+
+
+modbusReal.realValue:= WORD_TO_REAL(Run.Accum.Days) * 24.0 +
+					   WORD_TO_REAL(Run.Accum.Hrs) * 1.0 + 
+					   WORD_TO_REAL(Run.Accum.Mins) / 60.0;
+
+GVL.mb_Input_Registers[i+2]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+3]:= modbusReal.wordValue[2];	
+
+modbusReal.realValue:= WORD_TO_REAL(Run.On.Days) * 24.0 +
+					   WORD_TO_REAL(Run.On.Hrs) * 1.0 + 
+					   WORD_TO_REAL(Run.On.Mins) / 60.0;
+
+GVL.mb_Input_Registers[i+4]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+5]:= modbusReal.wordValue[2];
+
+modbusReal.realValue:= WORD_TO_REAL(Run.Off.Days) * 24.0 +
+					   WORD_TO_REAL(Run.Off.Hrs) * 1.0 + 
+					   WORD_TO_REAL(Run.Off.Mins) / 60.0;
+
+GVL.mb_Input_Registers[i+6]:= modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+7]:= modbusReal.wordValue[2];	   
+
+						
+GVL.nInputRegisterIndex:= i + 8;
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

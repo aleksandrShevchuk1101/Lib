@@ -121,7 +121,16 @@
     <Compile Include="POUs\OneATS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\OneCRAH.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\OneDI.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneEnergyMeter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneFire_Suppr.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\OneGen.TcPOU">
@@ -131,6 +140,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\OneIDF.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneIsolator_Latch.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OnePDU.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OnePumpFF_Latch.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneSpeed_Override.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneSTS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneSWBL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneTie_BRK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\OneUPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

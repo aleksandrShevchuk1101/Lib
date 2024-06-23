@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneSWBL" Id="{6cd8f9cc-1d9d-47ea-938d-9842792fb6a1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneSWBL
+VAR_INPUT
+	sur_STS : BOOL;
+	phs_ALM_1 : BOOL;
+	phs_ALM_2 : BOOL;
+	sur_phs_offline : BOOL;
+	
+	Etherm_24VDC_STS : BOOL;
+	Etherm_24VDC_Offline: BOOL;
+	
+	tvoc_BRK_STS: BOOL;               // CIRCUIT BREAERS
+	tvoc_BRK_ALM: BOOL; 
+    tvoc_24VDC_STS : BOOL;           // CIRCUIT BREAERS
+	tvoc_BRK_offline: BOOL; 
+	
+	BRK_FC11_POS_STS: BOOL;
+	BRK_FC11_TRIP_ALM : BOOL; 
+	BRK_FC11_offline: BOOL;
+	
+	BRK_BA01_POS_STS: BOOL;
+	BRK_BA01_TRIP_ALM : BOOL; 
+	BRK_BA01_offline: BOOL;
+	
+    BRK_EC01_POS_STS: BOOL;
+	BRK_EC01_TRIP_ALM : BOOL; 
+	BRK_EC01_offline: BOOL;
+	
+	BRK_JA01_POS_STS: BOOL;
+	BRK_JA01_TRIP_ALM : BOOL; 
+	BRK_JA01_offline: BOOL;
+	
+    BRK_MC01_POS_STS: BOOL;
+	BRK_MC01_TRIP_ALM : BOOL; 
+	BRK_MC01_offline: BOOL;
+	
+	BRK_RA01_POS_STS: BOOL;
+	BRK_RA01_TRIP_ALM : BOOL; 
+	BRK_RA01_offline: BOOL;
+	
+	
+	BRK_NO2_BA01_POS_STS: BOOL;
+	BRK_NO2_BA01_TRIP_ALM : BOOL; 
+	BRK_NO2_BA01_offline: BOOL;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i := GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := sur_STS;
+GVL.mb_Input_Coils[i+1] := phs_ALM_1;
+GVL.mb_Input_Coils[i+2] := phs_ALM_2;
+GVL.mb_Input_Coils[i+3] := sur_phs_offline;
+
+GVL.mb_Input_Coils[i+4] := sur_STS;
+GVL.mb_Input_Coils[i+5] := phs_ALM_1;
+
+GVL.mb_Input_Coils[i+6] := tvoc_BRK_STS;
+GVL.mb_Input_Coils[i+7] := tvoc_BRK_ALM;
+GVL.mb_Input_Coils[i+8] := tvoc_24VDC_STS;
+GVL.mb_Input_Coils[i+9] := tvoc_BRK_offline;
+
+GVL.mb_Input_Coils[i+10] := BRK_FC11_POS_STS;
+GVL.mb_Input_Coils[i+11] := BRK_FC11_TRIP_ALM;
+GVL.mb_Input_Coils[i+12] := BRK_FC11_offline;
+
+GVL.mb_Input_Coils[i+13] := BRK_BA01_POS_STS;
+GVL.mb_Input_Coils[i+14] := BRK_BA01_TRIP_ALM;
+GVL.mb_Input_Coils[i+15] := BRK_BA01_offline;
+
+GVL.mb_Input_Coils[i+16] := BRK_EC01_POS_STS;
+GVL.mb_Input_Coils[i+17] := BRK_EC01_TRIP_ALM;
+GVL.mb_Input_Coils[i+18] := BRK_EC01_offline;
+
+GVL.mb_Input_Coils[i+19] := BRK_JA01_POS_STS;
+GVL.mb_Input_Coils[i+20] := BRK_JA01_TRIP_ALM;
+GVL.mb_Input_Coils[i+21] := BRK_JA01_offline;
+
+GVL.mb_Input_Coils[i+22] := BRK_MC01_POS_STS;
+GVL.mb_Input_Coils[i+23] := BRK_MC01_TRIP_ALM;
+GVL.mb_Input_Coils[i+24] := BRK_MC01_offline;
+
+GVL.mb_Input_Coils[i+25] := BRK_RA01_POS_STS;
+GVL.mb_Input_Coils[i+26] := BRK_RA01_TRIP_ALM;
+GVL.mb_Input_Coils[i+27] := BRK_RA01_offline;
+
+GVL.mb_Input_Coils[i+28] := BRK_NO2_BA01_POS_STS;
+GVL.mb_Input_Coils[i+29] := BRK_NO2_BA01_TRIP_ALM;
+GVL.mb_Input_Coils[i+30] := BRK_NO2_BA01_offline;
+
+
+GVL.nInputCoilIndex := i + 31;
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

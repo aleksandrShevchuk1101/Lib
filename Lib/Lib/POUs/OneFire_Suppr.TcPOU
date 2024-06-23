@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneFire_Suppr" Id="{d711205c-68d1-46c6-a0fe-3b0e62cf5ee4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneFire_Suppr
+VAR_INPUT
+	Pn1_Alm : BOOL;
+	Pn1_FLT: BOOL;
+	Supp_Act: BOOL;
+	Fire_Offline: BOOL;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:= GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0]:= Pn1_Alm;
+GVL.mb_Input_Coils[i+1]:= Pn1_FLT;
+GVL.mb_Input_Coils[i+2]:= Supp_Act;
+GVL.mb_Input_Coils[i+3]:= Fire_Offline;
+
+GVL.nInputCoilIndex:= i+4;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

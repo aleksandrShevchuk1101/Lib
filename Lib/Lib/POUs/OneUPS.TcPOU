@@ -1,22 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="OneUPS" Id="{fe5a4b71-962f-4cd6-a458-c9252ca306bb}" SpecialFunc="None">
+  <POU Name="OneUPS" Id="{d3815c10-da6f-4496-abeb-228ad17930b1}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK OneUPS
 VAR_INPUT
-	Crit_Alm:BOOL;
-	Minor_Alm:BOOL;
-	ByPass_Mode:BOOL;
-	Batt_Mode: BOOL;
-	Offline: BOOL;	
+	Crit_Alm : BOOL;
+	Minor_Alm : BOOL;
+	ByPass_Mode : BOOL;
+	Batt_Mode : BOOL;
+	Offline: BOOL;
 END_VAR
-VAR_OUTPUT
-END_VAR
+
 VAR_TEMP
-	i:INT;
+	i : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[i:= GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := Crit_Alm;
+GVL.mb_Input_Coils[i+1] := Minor_Alm;
+GVL.mb_Input_Coils[i+2] := ByPass_Mode;
+GVL.mb_Input_Coils[i+3] := Batt_Mode;
+GVL.mb_Input_Coils[i+4] := Offline;
+
+GVL.nInputCoilIndex := i + 5;]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
