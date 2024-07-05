@@ -3,7 +3,7 @@
   <GVL Name="GVL_Electrical" Id="{f5382d4e-4bbb-4ef2-9c59-36cdb3d15a16}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
-		StartInputCoilIndex_CRAH : INT := 0;			     // uses 0-29
+	StartInputCoilIndex_CRAH : INT := 0;			     // uses 0-29
 	StartInputCoilIndex_SWBL : INT := 30;			     // uses 30-122 (third & fourth switchboards and STS overlap, but no system has these)
 	StartInputCoilIndex_CAC : INT := 0;				     // not used
 	StartInputCoilIndex_STS : INT := 98;			     // uses 98-225 no panel has STS and either GLP or ATS

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneSTS_RTU" Id="{bc0aa7e1-f930-4761-bda6-ae55291aeca1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneSTS_RTU
+VAR_INPUT
+	STS_Num: INT;
+END_VAR
+
+VAR_TEMP
+	i:INT;
+	modbusReal: ModbusUnion;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+i:=GVL.nInputRegisterIndex;
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].PRI_VA;
+GVL.mb_Input_Registers[i+0] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+1] := modbusReal.wordValue[2];
+
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].PRI_VB;
+GVL.mb_Input_Registers[i+2] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+3] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].PRI_VC;
+GVL.mb_Input_Registers[i+4] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+5] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_VA;
+GVL.mb_Input_Registers[i+6] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+7] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_VB;
+GVL.mb_Input_Registers[i+8] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+9] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_VC;
+GVL.mb_Input_Registers[i+10] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+11] := modbusReal.wordValue[2];
+
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].AMPSA;
+GVL.mb_Input_Registers[i+12] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+13] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].AMPSB;
+GVL.mb_Input_Registers[i+14] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+15] := modbusReal.wordValue[2];
+
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].AMPSC;
+GVL.mb_Input_Registers[i+16] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+17] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].FREQ;
+GVL.mb_Input_Registers[i+18] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+19] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].SEC_VA;
+GVL.mb_Input_Registers[i+20] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+21] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].SEC_VB;
+GVL.mb_Input_Registers[i+22] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+23] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].SEC_VC;
+GVL.mb_Input_Registers[i+24] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+25] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_LOAD_A;
+GVL.mb_Input_Registers[i+26] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+27] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_LOAD_B;
+GVL.mb_Input_Registers[i+28] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+29] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_LOAD_C;
+GVL.mb_Input_Registers[i+30] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+31] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_KW_A;
+GVL.mb_Input_Registers[i+32] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+33] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_KW_B;
+GVL.mb_Input_Registers[i+34] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+35] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_KW_C;
+GVL.mb_Input_Registers[i+36] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+37] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_KVA_A;
+GVL.mb_Input_Registers[i+38] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+39] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_KVA_B;
+GVL.mb_Input_Registers[i+40] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+41] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].OTP_KVA_C;
+GVL.mb_Input_Registers[i+42] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+43] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].PF_A;
+GVL.mb_Input_Registers[i+44] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+45] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].PF_B;
+GVL.mb_Input_Registers[i+46] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+47] := modbusReal.wordValue[2];
+
+modbusReal.realValue:= GVL_STS.STS[STS_Num].PF_C;
+GVL.mb_Input_Registers[i+48] := modbusReal.wordValue[1];
+GVL.mb_Input_Registers[i+49] := modbusReal.wordValue[2];
+
+GVL.nInputRegisterIndex:= i + 50;
+
+i:=GVL.nInputCoilIndex;
+
+GVL.mb_Input_Coils[i+0] := GVL_STS.STS[STS_Num].COM_ALM;
+GVL.mb_Input_Coils[i+1] := GVL_STS.STS[STS_Num].OTP_BKR_OPN;
+GVL.mb_Input_Coils[i+2] := GVL_STS.STS[STS_Num].L1_INP_BKR_OPN;
+GVL.mb_Input_Coils[i+3] := GVL_STS.STS[STS_Num].L2_INP_BKR_OPN;
+GVL.mb_Input_Coils[i+4] := GVL_STS.STS[STS_Num].L1_BYP_BKR_TRP;
+GVL.mb_Input_Coils[i+5] := GVL_STS.STS[STS_Num].L2_BYP_BKR_TRP;
+GVL.mb_Input_Coils[i+6] := GVL_STS.STS[STS_Num].OTP_BKR_TRP;
+GVL.mb_Input_Coils[i+7] := GVL_STS.STS[STS_Num].L1_INP_BKR_TRP;
+GVL.mb_Input_Coils[i+8] := GVL_STS.STS[STS_Num].L2_INP_BKR_TRP;
+GVL.mb_Input_Coils[i+9] := GVL_STS.STS[STS_Num].FANS_FAIL;
+
+GVL.nInputRegisterIndex:= i + 10;
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
