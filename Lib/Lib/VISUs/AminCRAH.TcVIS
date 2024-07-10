@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <Visu Name="Visualization" Id="{354e3d56-b88a-4f66-957c-c93b263eb97b}">
+  <Visu Name="AminCRAH" Id="{354e3d56-b88a-4f66-957c-c93b263eb97b}">
     <XmlArchive>
       <Data>
         <o xml:space="preserve" t="VisualObject">
           <n n="LastVisuLanguageModelEntry" />
-          <v n="UniqueIdGenerator">"19"</v>
+          <v n="UniqueIdGenerator">"31"</v>
           <o n="VisualElemList" t="VisualElemList">
             <l n="VisualElementList" t="VisualElemCollection" cet="GenericVisualElem">
               <o>
@@ -1672,62 +1672,62 @@
           <o n="TextDocument" t="TextDocument">
             <a n="TextLines" cet="TextLine">
               <o>
-                <v n="Id">9L</v>
+                <v n="Id">20L</v>
                 <n n="Tag" />
                 <v n="Text">"VAR_INPUT"</v>
               </o>
               <o>
-                <v n="Id">11L</v>
+                <v n="Id">21L</v>
                 <n n="Tag" />
                 <v n="Text">"	idCrah : WSTRING;"</v>
               </o>
               <o>
-                <v n="Id">8L</v>
+                <v n="Id">22L</v>
                 <n n="Tag" />
                 <v n="Text">"	Offline : BOOL;"</v>
               </o>
               <o>
-                <v n="Id">12L</v>
+                <v n="Id">23L</v>
                 <n n="Tag" />
                 <v n="Text">"	Alarm : BOOL;"</v>
               </o>
               <o>
-                <v n="Id">3L</v>
+                <v n="Id">24L</v>
                 <n n="Tag" />
                 <v n="Text">"	Enable: BOOL;"</v>
               </o>
               <o>
-                <v n="Id">5L</v>
+                <v n="Id">25L</v>
                 <n n="Tag" />
                 <v n="Text">"	Running: BOOL;"</v>
               </o>
               <o>
-                <v n="Id">10L</v>
+                <v n="Id">26L</v>
                 <n n="Tag" />
                 <v n="Text">"	Inhibited : BOOL;"</v>
               </o>
               <o>
-                <v n="Id">15L</v>
+                <v n="Id">27L</v>
                 <n n="Tag" />
                 <v n="Text">"	Maintenance : BOOL;		"</v>
               </o>
               <o>
-                <v n="Id">19L</v>
+                <v n="Id">28L</v>
                 <n n="Tag" />
                 <v n="Text">"	HOA : WORD;"</v>
               </o>
               <o>
-                <v n="Id">17L</v>
+                <v n="Id">29L</v>
                 <n n="Tag" />
                 <v n="Text">"	Isolator1 : BOOL;"</v>
               </o>
               <o>
-                <v n="Id">18L</v>
+                <v n="Id">30L</v>
                 <n n="Tag" />
                 <v n="Text">"	Isolator2 : BOOL;"</v>
               </o>
               <o>
-                <v n="Id">14L</v>
+                <v n="Id">31L</v>
                 <n n="Tag" />
                 <v n="Text">"	DeactivateIso2 : BOOL;"</v>
               </o>
