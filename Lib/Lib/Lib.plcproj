@@ -20,6 +20,8 @@
     <ProjectVersion>0.1.0</ProjectVersion>
     <DefaultNamespace>Lib</DefaultNamespace>
     <Author>Sha</Author>
+    <Company>Terza-automation</Company>
+    <Title>Lib</Title>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\Beckhoff_AI.TcDUT">
