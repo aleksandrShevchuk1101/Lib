@@ -1,170 +1,170 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47" ClassName="CNestedPlcProjDef">
 	<Project GUID="{908B7218-EF02-4BE6-A65B-CEAA60AB7FE2}" Name="Lib" PrjFilePath="..\..\Lib\Lib.plcproj" TmcFilePath="..\..\Lib\Lib.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Lib\Lib.tmc" TmcHash="{A3F02462-B9FD-A4F8-C1B6-39BDC5FEBA5D}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Lib\Lib.tmc" TmcHash="{D3FC44D3-7406-86A3-082C-37AA8D7F0CF8}">
 			<Name>Lib Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>GVL_DECI.CouplerStatus</Name>
+					<Name>GVL_HW.CouplerStatus</Name>
 					<Comment><![CDATA[ Coupler state - a UINT that should be 8 if its healthy]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term02Status</Name>
+					<Name>GVL_HW.Term02Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term03Status</Name>
+					<Name>GVL_HW.Term03Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term04Status</Name>
+					<Name>GVL_HW.Term04Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term05Status</Name>
+					<Name>GVL_HW.Term05Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term06Status</Name>
+					<Name>GVL_HW.Term06Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term07Status</Name>
+					<Name>GVL_HW.Term07Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term08Status</Name>
+					<Name>GVL_HW.Term08Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term09Status</Name>
+					<Name>GVL_HW.Term09Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term10Status</Name>
+					<Name>GVL_HW.Term10Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term11Status</Name>
+					<Name>GVL_HW.Term11Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term12Status</Name>
+					<Name>GVL_HW.Term12Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term13Status</Name>
+					<Name>GVL_HW.Term13Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term14Status</Name>
+					<Name>GVL_HW.Term14Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term15Status</Name>
+					<Name>GVL_HW.Term15Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term16Status</Name>
+					<Name>GVL_HW.Term16Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term17Status</Name>
+					<Name>GVL_HW.Term17Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term18Status</Name>
+					<Name>GVL_HW.Term18Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term19Status</Name>
+					<Name>GVL_HW.Term19Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term20Status</Name>
+					<Name>GVL_HW.Term20Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term21Status</Name>
+					<Name>GVL_HW.Term21Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term22Status</Name>
+					<Name>GVL_HW.Term22Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term23Status</Name>
+					<Name>GVL_HW.Term23Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term24Status</Name>
+					<Name>GVL_HW.Term24Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term25Status</Name>
+					<Name>GVL_HW.Term25Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term26Status</Name>
+					<Name>GVL_HW.Term26Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term27Status</Name>
+					<Name>GVL_HW.Term27Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term28Status</Name>
+					<Name>GVL_HW.Term28Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term29Status</Name>
+					<Name>GVL_HW.Term29Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term30Status</Name>
+					<Name>GVL_HW.Term30Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term31Status</Name>
+					<Name>GVL_HW.Term31Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term32Status</Name>
+					<Name>GVL_HW.Term32Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term33Status</Name>
+					<Name>GVL_HW.Term33Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term34Status</Name>
+					<Name>GVL_HW.Term34Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term35Status</Name>
+					<Name>GVL_HW.Term35Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term36Status</Name>
+					<Name>GVL_HW.Term36Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term37Status</Name>
+					<Name>GVL_HW.Term37Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term38Status</Name>
+					<Name>GVL_HW.Term38Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term39Status</Name>
+					<Name>GVL_HW.Term39Status</Name>
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>GVL_DECI.Term40Status</Name>
+					<Name>GVL_HW.Term40Status</Name>
 					<Type>WORD</Type>
 				</Var>
 			</Vars>
