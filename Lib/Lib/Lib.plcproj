@@ -17,7 +17,7 @@
     <Implicit_Jitter_Distribution>{ac38cc35-06f7-46fd-937c-ad6e0dc8bdff}</Implicit_Jitter_Distribution>
     <LibraryReferences>{5ed0da00-5f9e-4f07-95de-bdbf4252a424}</LibraryReferences>
     <Released>false</Released>
-    <ProjectVersion>0.1.0</ProjectVersion>
+    <ProjectVersion>0.1.2</ProjectVersion>
     <DefaultNamespace>Lib</DefaultNamespace>
     <Author>Sha</Author>
     <Company>Terza-automation</Company>

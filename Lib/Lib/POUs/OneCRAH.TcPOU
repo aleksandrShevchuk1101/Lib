@@ -37,11 +37,11 @@ Ena(State:= Enable);
 
 i:= GVL.nInputCoilIndex;
 
-GVL.nInputCoilIndex[i+0] :=  Running;
-GVL.nInputCoilIndex[i+1] :=  Alarm;
-GVL.nInputCoilIndex[i+2] :=  Offline;
-GVL.nInputCoilIndex[i+3] :=  Iso1_1_Sts;
-GVL.nInputCoilIndex[i+4] :=  Iso1_2_Sts;
+GVL.mb_Input_Coils[i+0] :=  Running;
+GVL.mb_Input_Coils[i+1] :=  Alarm;
+GVL.mb_Input_Coils[i+2] :=  Offline;
+GVL.mb_Input_Coils[i+3] :=  Iso1_1_Sts;
+GVL.mb_Input_Coils[i+4] :=  Iso1_2_Sts;
 
 GVL.nInputCoilIndex := i + 5;
 
